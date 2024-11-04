@@ -1,11 +1,13 @@
 import { useState } from 'react'
 
+import Default from './components/default'
+
 function App() {
 
 
   return (
     <>
-      <h1>This is the main page</h1>
+      <Default/>
     </>
   )
 }

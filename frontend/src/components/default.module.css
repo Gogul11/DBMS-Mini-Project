@@ -1,0 +1,61 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px 0px 100px 0px;
+}
+
+.img{
+    height: 700px;
+    width: 100%;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.info1, .info3{
+    margin-left: 120px;
+}
+.info2{
+    margin-left: 780px;
+}
+.img2{
+    height: 350px;
+    width: 350px;
+    border-radius: 0px 20px 20px 0px;
+}
+.info div{
+    display: flex;
+    height: 350px;
+    width: 700px;
+    border-radius: 20px;
+    background-color: #003459;
+    justify-content: space-between;
+    align-items: center;
+}
+.info p{
+    margin-left: 100px;
+    font-size: 2.5rem;
+}
+.but{
+    display: flex;
+    justify-content: center;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.motto{
+    font-size: 3rem;
+    position: relative;
+    text-align: center;
+    top: 100px;
+}

@@ -1,0 +1,100 @@
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 60px;
+    align-items: center;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.divi{
+    font-size: 2.5rem;
+    text-align: center;
+}
+.table{
+    height: 500px;
+    width: 500px;
+}
+.table td{
+    font-size: 2rem;
+}
+.table tbody tr td:nth-child(3){
+    position: relative;
+    left: 50px;
+}
+.container{
+    height: 400px;
+    width: 800px;
+    border-radius: 20px;
+    background-color: #003459;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.container div img{
+    border-radius: 20px;
+}
+.container:nth-child(2) p{
+    font-size: 1.5rem;
+    margin: 10px;
+}
+.container:nth-child(2) button{
+    position: relative;
+    left: 100px;
+    top: 30px;
+}
+
+.orders{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.reviewBox{
+    height: 280px;
+    width: 800px;
+    background-color: #003459;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 25px;
+}
+.head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.reviewBox p{
+    font-size: 1.2rem;
+}
+.comments{
+    overflow:auto;
+    height: 130px;
+    width: 600px;
+    position: relative;
+    left: 150px;
+}
+.sub{
+    margin-left:  20px;
+}
+.star{
+    height: 20px;
+    width: 20px;
+}
+.reviews{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

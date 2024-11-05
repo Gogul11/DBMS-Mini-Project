@@ -1,0 +1,93 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+
+.main{
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.quanBut{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 3px;
+    cursor: pointer;
+    background-color: #003459;
+    border: none;
+    color: white;
+}
+
+.partInfo{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+.partInfo > div:nth-child(2) > div{
+    display: flex;
+    gap: 30px;
+}
+.partInfo > div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.partInfo > div:nth-child(2) p{
+    font-size: 2rem;
+}
+.desc , .Title{
+    text-align:start;
+}
+.description{
+    font-size: 1.5rem;
+    margin: 20px 50px;
+}
+.Title{
+    font-size: 2rem;
+}
+.star{
+    height: 20px;
+    width: 20px;
+}
+
+.reviewPart{
+    height: 350px;
+    width: 900px;
+    background-color: #003459;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+}
+.reviewPart > div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+.reviewPart > div:nth-child(1) p{
+    font-size: 2rem;
+}
+.reviewText{
+    height: 170px;
+    overflow: auto;
+    font-size: 1.1rem;
+}
+.comm{
+    font-size: 2rem;
+}
+.reviews{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 50px 0px 20px 200px;
+}

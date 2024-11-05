@@ -1,0 +1,61 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px;
+}
+.main button{
+    margin-left: 50px;
+}
+.card {
+    width: 450px;
+    height: 250px;
+    background-color: #003459;
+    color: white;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card > div:nth-child(1){
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    margin: 20px 0px 0px 0px;
+}
+.info p{
+    font-size: 2rem;
+}
+.card button{
+    margin: 10px 0px 0px 180px;
+}
+
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.catList{
+    font-size: 2rem;
+}
+
+.categorylist{
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}

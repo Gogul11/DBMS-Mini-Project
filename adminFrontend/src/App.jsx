@@ -1,11 +1,11 @@
 
-import Supplier from "./Component/order_profile"
+import Order from "./Component/order_profile"
 function App() {
 
 
   return (
     <>
-      <Supplier/>
+      <Order/>
     </>
   )
 }

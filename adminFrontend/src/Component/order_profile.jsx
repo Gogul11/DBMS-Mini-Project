@@ -7,7 +7,7 @@ export default function Order(){
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
-                <p className="title">Spare Hub</p>
+                <p className="title">Spare Hub-Admin</p>
                 <div>
                     <button className="button">Home</button>
                     <button className="button">Back</button>

@@ -25,7 +25,7 @@ export default function Supplier(){
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
-                <p className="title">Spare Hub</p>
+                <p className="title">Spare Hub-Admin</p>
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
                     <button className="button">HOME</button>

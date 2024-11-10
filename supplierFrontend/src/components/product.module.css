@@ -1,0 +1,50 @@
+
+.supplierPage{
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.productCard {
+    background-color: #0a3b5a;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 900px;
+    height: 250px;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    overflow: auto;
+
+}
+
+.productCardHeader {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.productCardContent {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.productCardDescription {
+    margin-top: 10px;
+    color: #cfcfcf;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.productList{
+    margin-left: 200px;
+}

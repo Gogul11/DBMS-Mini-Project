@@ -1,5 +1,5 @@
 
-import Order from "./Component/order_info"
+import Order from "./Component/order_profile"
 function App() {
 
 
@@ -11,3 +11,4 @@ function App() {
 }
 
 export default App
+

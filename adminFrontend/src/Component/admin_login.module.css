@@ -1,0 +1,69 @@
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px;
+}
+.body{
+    align-items: center;
+    margin: 100px 0px 0px 500px;
+}
+h2{
+    margin-left: 120px;
+}
+
+.backButton {
+background: none;
+border: none;
+color: #ffffff;
+font-size: 1rem;
+cursor: pointer;
+padding: 10px;
+}
+
+.icon {
+font-size: 1.5rem;
+}
+
+.title {
+font-size: 1.8rem;
+margin-bottom: 20px;
+
+}
+
+.form {
+display: flex;
+flex-direction: column;
+max-width: 400px;
+width: 100%;
+gap: 15px;
+}
+
+.form label {
+font-size: 1rem;
+margin-bottom: 5px;
+}
+
+.form input {
+padding: 10px;
+border-radius: 5px;
+border: none;
+font-size: 1rem;
+outline: none;
+}
+
+.confirmButton {
+background-color: #1c3454;
+color: #ffffff;
+padding: 10px;
+border-radius: 5px;
+border: none;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.confirmButton:hover {
+background-color: #294866;
+}

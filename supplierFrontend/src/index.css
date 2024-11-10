@@ -1,0 +1,43 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+body{
+    background-color: #00171F;
+    color: #fff;
+}
+.button{
+    height: 50px;
+    width: 150px;
+    background-color: #003459;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+.button:hover{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.title{
+    font-size: 3.5rem;
+}
+.sb{
+    height: 40px;
+    width: 300px;
+    border-radius: 20px;
+    padding-left: 30px;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.svg{
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}

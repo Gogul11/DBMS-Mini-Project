@@ -1,0 +1,57 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.main {
+    margin:50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.input{
+    width: 300px;
+    height:40px;
+    border-radius: 20px;
+    padding-left:20px;
+}
+
+.label{
+    font-size: 1.5rem;
+}
+
+.form button{
+    margin:20px 0px 0px 80px;
+}
+
+.form p{
+    font-size: 2rem;
+    cursor:default
+}
+.form a{
+    font-size: 2rem;
+    color: #FC7311;
+    cursor:pointer;
+}
+
+.form a:hover{
+    opacity: 0.7;
+
+}

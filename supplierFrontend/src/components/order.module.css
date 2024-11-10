@@ -1,0 +1,84 @@
+/* OrderPage.module.css */
+.orderPage {
+    min-height: 100vh;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    font-style: italic;
+}
+
+.navButtons {
+    display: flex;
+    gap: 10px;
+}
+
+.navButtons button {
+    background-color: #1e3a5a;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.userIcon {
+    font-size: 24px;
+}
+
+.orderList {
+    margin-top: 20px;
+}
+
+.orderCard {
+    background-color: #003459;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 250px;
+    width: 800px;
+    margin-left: 300px;
+}
+
+.orderCardHeader {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+}
+
+.orderCardContent {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+}
+
+.tr td{
+    padding: 10px;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.title{
+    font-size: 1.5rem;
+    margin-left: 100px;
+}

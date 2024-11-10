@@ -1,0 +1,43 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 500px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.img{
+    height: 550px;
+    width: 1300px;
+    border-radius: 20px;
+}
+.button{
+    height: 50px;
+    width: 300px;
+    background-color: #003459;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+.button:hover{
+    opacity: 0.6;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px;
+    align-items: center;
+}
+.butDiv{
+    display: flex;
+    gap: 30px;
+}
+.motto{
+    font-size: 2rem;
+    text-align: center;
+    margin: 20px;
+}

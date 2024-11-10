@@ -1,0 +1,21 @@
+.nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 500px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px;
+    align-items: center;
+}
+.info p{
+    font-size: 2rem;
+    margin: 1.5rem;
+}

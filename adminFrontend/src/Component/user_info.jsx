@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { user } from "../img"
 import styles from "./user.module.css"
+import { useNavigate } from "react-router-dom";
 
 const Card = () => {
-
+    const navigate=useNavigate()
     return(
         <div className={styles.card}>
             <div>
@@ -14,27 +15,23 @@ const Card = () => {
                     <p>Email-ID</p>
                 </div>
             </div>
-            <button className="button">More Info</button>
+            <button className="button" onClick={() => navigate("/user/profile")}>More Info</button>
     </div>
     )
 }
 
 export default function User(){
-
-    const[log, setLog] = useState(true)
+    const navigate=useNavigate()
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub-Admin</p>
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
-                    <button className="button">HOME</button>
-                    <button className="button">BACK</button>
-                    {
-                        log ? 
-                            <img src={user} alt="User Profile" className="svg" /> :
-                            <button className="button">Login</button>
-                    }
+                    <button className="button" onClick={() => navigate("/home")}>HOME</button>
+                    <button className="button" onClick={() => navigate(-1)}>BACK</button>
+                    <img src={user} alt="User Profile" className="svg" onClick={() => navigate()}/>
+                
                 </div>
             </nav>
             <p className={styles.catList}>User</p>

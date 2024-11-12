@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./profile.module.css"
 import { star } from "../img";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
     return(
@@ -13,14 +14,12 @@ const Orders = () => {
                 <p>Amount</p>
                 <p>Date</p>
                 <p>Status</p>
-                <button className="button">More Info</button>
             </div>
         </div>
     )
 }
 
 const Reviews = () => {
-
     return(
         <div className={styles.reviewBox}>
             <div className={styles.head}>
@@ -33,7 +32,6 @@ const Reviews = () => {
                     <img src={star} alt="Ratings" className={styles.star} />
                     <img src={star} alt="Ratings" className={styles.star} />
                 </div>
-                <button className="button">More Info</button>
             </div>
             <div>
                 <p className={styles.sub}>comment : </p>
@@ -45,15 +43,15 @@ const Reviews = () => {
         </div>
     )
 }
-export default function Profile(){
-
+export default function UserProfile(){
+    const navigate=useNavigate()
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub-Admin</p>
                 <div>
-                    <button className="button">Home</button>
-                    <button className="button">Back</button>
+                    <button className="button" onClick={() => navigate("/home")}>Home</button>
+                    <button className="button" onClick={() => navigate(-1)}>Back</button>
                 </div>
             </nav>
             <div className={styles.info}>

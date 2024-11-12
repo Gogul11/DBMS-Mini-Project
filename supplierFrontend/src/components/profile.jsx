@@ -1,13 +1,23 @@
+import { useNavigate } from 'react-router-dom'
 import styles from './profile.module.css'
 
 export default function(){
+
+    const navigate = useNavigate()
 
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
-                    <button className="button">Home</button>
+                    <button 
+                        className="button"
+                        onClick={() => navigate("/home")}
+                    >Home</button>
+                    <button 
+                                className="button"
+                                onClick={() => navigate(-1)}
+                            >Back</button>
                 </div>
             </nav>
 

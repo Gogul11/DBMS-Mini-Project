@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import styles from "./part.module.css"
 import { star, user } from "../img"
+import { Link, useNavigate } from "react-router-dom"
 
 
 const Review = () => {
@@ -41,19 +42,32 @@ export default function Part(){
     const[log, setLog] = useState(true)
     const[quan, setQuan] = useState(1)
 
+    const navigate = useNavigate()
+
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
-                    <button className="button">Home</button>
-                    <button className="button">Back</button>
                     {
-                        log ? 
-                            <img src={user} alt="User Profile" className="svg" /> :
-                            <button className="button">Login</button>
+                        log ? (
+                                <img src={user} 
+                                    alt="User Profile" 
+                                    className="svg"
+                                    onClick={() => navigate("/profile")}
+                                    /> 
+                        ):(
+                            <button 
+                                className="button"
+                                onClick={() => navigate("/login")}
+                            >Login</button>
+                        )
                     }
+                    <button 
+                        className="button"
+                        onClick={() => navigate(-1)}
+                            >Back</button>
                 </div>
             </nav>
             <div className={styles.partInfo}>

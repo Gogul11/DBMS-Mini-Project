@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import styles from './home.module.css'
 import { supplier, user } from '../img';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Home(){
+
+    const navigate = useNavigate();
+    
 
     const[log, setLog] = useState(false);
     return(
@@ -10,7 +15,13 @@ export default function Home(){
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
-                            <img src={user} alt="User Profile" className="svg" /> 
+                            <img 
+                                src={user} 
+                                onClick={() => navigate("/supplier-profile")} alt="User Profile" className="svg" /> 
+                            <button
+                                className="button"
+                                onClick={() => navigate("/")}
+                            >Log out</button>
                 </div>
             </nav>
 
@@ -21,9 +32,21 @@ export default function Home(){
             </div>
 
             <div className={styles.butDiv}>
-                <button className={styles.button}>Supplied Products</button>
-                <button className={styles.button}>Add products</button>
-                <button className={styles.button}>Orders Taken</button>
+                <button 
+                    className={styles.button}
+                    onClick={() => {navigate("/products")}}
+                >
+                    Supplied Products</button>
+                <button 
+                    className={styles.button}
+                    onClick={() => navigate("/add-product")}
+                >
+                    Add products</button>
+                <button 
+                    className={styles.button}
+                    onClick={() => navigate("/orders")}
+                >
+                    Orders Taken</button>
             </div>
         </div>
     )

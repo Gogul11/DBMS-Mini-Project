@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './order.module.css';
 import {user} from "../img"
+import { useNavigate } from 'react-router-dom';
 
 const OrderPage = () => {
 // Example order data; replace with actual data as needed
@@ -11,17 +12,24 @@ const orders = [
 ];
 
 const[log, setLog] = useState(false)
+const navigate = useNavigate();
 return (
     <div className={styles.orderPage}>
         <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
-                    {
-                        log ? 
-                            <img src={user} alt="User Profile" className="svg" /> :
-                            <button className="button">Login</button>
-                    }
+                            <button 
+                                className="button"
+                                onClick={() => navigate("/home")}
+                            >Home</button>
+                            <button 
+                                className="button"
+                                onClick={() => navigate(-1)}
+                            >Back</button>
+                            <img src={user}
+                                onClick={() => navigate("/supplier-profile")}
+                                alt="User Profile" className="svg" /> 
                 </div>
             </nav>
 

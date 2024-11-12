@@ -2,9 +2,11 @@ import { user } from "../img"
 import { useState } from "react"
 import React from 'react';
 import styles from './admin_supplier.module.css';
+import { useNavigate } from "react-router-dom";
 
 const Admin_supplier = () => {
     const[log, setLog] = useState(true)
+    const navigate=useNavigate()
     return (
         <div className={styles.main}>
         <nav className={styles.nav}>

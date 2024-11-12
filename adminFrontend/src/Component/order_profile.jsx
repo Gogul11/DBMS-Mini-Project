@@ -1,16 +1,17 @@
 import React from "react";
 import styles from "./profile.module.css"
 import { star } from "../img";
+import { useNavigate } from "react-router-dom";
 
-export default function Order(){
-
+export default function OrderProfile(){
+    const navigate=useNavigate()
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub-Admin</p>
                 <div>
-                    <button className="button">Home</button>
-                    <button className="button">Back</button>
+                    <button className="button" onClick={() => navigate("/home")}>Home</button>
+                    <button className="button" onClick={() => navigate(-1)}>Back</button>
                 </div>
             </nav>
             <div className={styles.info}>

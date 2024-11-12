@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./profile.module.css"
 import { star } from "../img";
+import { useNavigate } from "react-router-dom";
 
 const Orders = () => {
+    const navigate=useNavigate()
     return(
         <div className={styles.container}>
             <div>
@@ -12,22 +14,21 @@ const Orders = () => {
                 <p>name</p>
                 <p>Part ID</p>
                 <p>Price</p>
-                <button className="button">More Info</button>
             </div>
         </div>
     )
 }
 
 
-export default function Supplier(){
-
+export default function SupplierProfile(){
+    const navigate=useNavigate()
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub-Admin</p>
                 <div>
-                    <button className="button">Home</button>
-                    <button className="button">Back</button>
+                    <button className="button" onClick={() => navigate("/home")}>Home</button>
+                    <button className="button" onClick={() => navigate(-1)}>Back</button>
                 </div>
             </nav>
             <div className={styles.info}>
@@ -55,7 +56,6 @@ export default function Supplier(){
             <div className={styles.orders}>
                 <p className={styles.divi}>Supplier's product</p>
                 <Orders/>
-                <button className="button">View More</button>
             </div>
         </div>
     )

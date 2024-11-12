@@ -1,0 +1,56 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 50px;
+}
+  .nav{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+.nav div{
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+}
+
+.icon {
+font-size: 1.5rem;
+}
+
+.grid {
+display: flex;
+flex-direction: column;
+gap: 40px;
+max-width: 600px;
+width: 100%;
+align-items: center;
+margin: 100px 0px 0px 400px;
+
+}
+.grid1 {
+    gap: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.grid2{
+    gap: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+background-color: #1c3454;
+padding: 60px;
+border-radius: 8px;
+text-align: center;
+font-size: 1.1rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.card:hover {
+background-color: #294866;
+}

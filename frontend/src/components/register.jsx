@@ -1,8 +1,10 @@
+import { Link, useNavigate } from "react-router-dom"
 import styles from "./register.module.css"
 import {z} from "zod"
 
 export default function Register(){
 
+    const navigate = useNavigate();
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
@@ -10,7 +12,10 @@ export default function Register(){
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
                 </div>
-                <button className="button">Home</button>
+                <button 
+                    className="button"
+                    onClick={() => navigate("/")}
+                >Home</button>
             </nav>
             <div>
                     <form className={styles.form}>
@@ -26,7 +31,10 @@ export default function Register(){
                         <label htmlFor="cPassword" className={styles.lable}>Confirm Password :</label>
                         <input type="text" name="cPassword" id="cPassword" className={styles.input}/>
 
-                        <button className="button">Register</button>
+                        <button 
+                            className="button"
+                            onClick={() => navigate("/login")}
+                        >Register</button>
                     </form>
             </div>
         </div>

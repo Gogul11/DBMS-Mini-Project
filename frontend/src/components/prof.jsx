@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./prof.module.css"
 import { star } from "../img";
+import { Link, useNavigate } from "react-router-dom";
 
 const Orders = () => {
+    const navigate =useNavigate();
     return(
         <div className={styles.container}>
             <div>
@@ -14,7 +16,9 @@ const Orders = () => {
                 <p>Date</p>
                 <p>Status</p>
                 <p>Quantity</p>
-                <button className="button">More Info</button>
+                <button onClick={() => navigate("/parts/info")} 
+                    className="button"
+                >More Info</button>
             </div>
         </div>
     )
@@ -22,6 +26,7 @@ const Orders = () => {
 
 const Reviews = () => {
 
+    const navigate = useNavigate()
     return(
         <div className={styles.reviewBox}>
             <div className={styles.head}>
@@ -34,7 +39,8 @@ const Reviews = () => {
                     <img src={star} alt="Ratings" className={styles.star} />
                     <img src={star} alt="Ratings" className={styles.star} />
                 </div>
-                <button className="button">More Info</button>
+                <button onClick={() => navigate("/parts/info")}
+                    className="button">More Info</button>
             </div>
             <div>
                 <p className={styles.sub}>comment : </p>
@@ -48,13 +54,27 @@ const Reviews = () => {
 }
 export default function Profile(){
 
+    const navigate = useNavigate()
+
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
-                    <button className="button">Home</button>
-                    <button className="button">Back</button>
+                    <button 
+                        className="button"
+                        onClick={() => navigate("/")}
+                    >Home</button>
+
+                    <button 
+                        className="button"
+                        onClick={() => navigate(-1)}
+                    >Back</button>
+
+                    <button 
+                        className="button"
+                        onClick={() => navigate("/")}
+                    >Log out</button>
                 </div>
             </nav>
             <div className={styles.info}>

@@ -1,13 +1,25 @@
+import { useNavigate } from "react-router-dom"
 import styles from "./addpart.module.css"
 
 
 export default function Addpart(){
 
+    const navigate = useNavigate();
+
     return(
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
-                <button className="button">Home</button>
+                <div>
+                    <button
+                        className="button"
+                        onClick={() => navigate("/home")}
+                    >Home</button>
+                    <button
+                            className="button"
+                            onClick={() => navigate(-1)}
+                        >Back</button>
+                </div>
             </nav>
             <div>
                     <form className={styles.form}>
@@ -23,7 +35,10 @@ export default function Addpart(){
                         <label htmlFor="desc" className={styles.lable}>Description :</label>
                         <textarea name="desc" id="desc" className={styles.textarea}></textarea>
 
-                        <button className="button">Add Part</button>
+                        <button 
+                            className="button"
+                            onClick={() => navigate("/products")}
+                        >Add Part</button>
                     </form>
             </div>
         </div>

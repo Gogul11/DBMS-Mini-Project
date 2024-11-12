@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import styles from "./default.module.css"
 import { img, img1, img2, img3, user } from "../img";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Default(){
 
     const[log, setLog] = useState(false)
+
+    const navigate = useNavigate();
 
     return(
         <div className={styles.main}>
@@ -13,9 +16,19 @@ export default function Default(){
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
                     {
-                        log ? 
-                            <img src={user} alt="User Profile" className="svg" /> :
-                            <button className="button">Login</button>
+                        log ? (
+                                <img 
+                                    src={user} 
+                                    alt="User Profile" 
+                                    className="svg" 
+                                    onClick={() => navigate("/profile")}
+                                    />
+                        ):(
+                            <button 
+                                className="button"
+                                onClick={() => navigate("/login")}
+                            >Login</button>
+                        )
                     }
                 </div>
             </nav>
@@ -25,7 +38,10 @@ export default function Default(){
             </div>
 
             <div className={styles.but}>
-                <button className="button">View Parts</button>
+                <button 
+                    className="button"
+                    onClick={() => navigate("/parts")}
+                >View Parts</button>
             </div>
             
             <div className={styles.info}>

@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { user } from "../img"
 import styles from "./list.module.css"
+import { Link, useNavigate } from "react-router-dom"
 
 const Card = () => {
-
+    const navigate = useNavigate()
     return(
         <div className={styles.card}>
             <div>
@@ -14,12 +15,17 @@ const Card = () => {
                     <p>Price</p>
                 </div>
             </div>
-            <button className="button">More Info</button>
+            <button 
+                className="button"
+                onClick={() => navigate("/parts/info")}
+            >More Info</button>
     </div>
     )
 }
 
 export default function List(){
+
+    const navigate = useNavigate()
 
     const[log, setLog] = useState(true)
     return(
@@ -28,16 +34,26 @@ export default function List(){
                 <p className="title">Spare Hub</p>
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
-                    <button className="button">HOME</button>
-                    <button className="button">BACK</button>
                     {
-                        log ? 
-                            <img src={user} alt="User Profile" className="svg" /> :
-                            <button className="button">Login</button>
+                        log ? (
+                                <img src={user} 
+                                    alt="User Profile" 
+                                    className="svg" 
+                                    onClick={() => navigate("/profile")}
+                                    /> 
+                        ):(
+                            <button 
+                                className="button"
+                                onClick={() => navigate("/login")}
+                            >Login</button>
+                        )
                     }
                 </div>
             </nav>
-            <button className="button">Categories</button>
+            <button 
+                className="button"
+                onClick={() => navigate("/category")}
+            >Categories</button>
             <div className={styles.cards}>
                 <Card/>
                 <Card/>

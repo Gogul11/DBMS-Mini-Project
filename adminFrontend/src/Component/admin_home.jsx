@@ -14,6 +14,7 @@ const Admin_home = () => {
                 
                         <img 
                             src={user} alt="User Profile" className="svg" 
+                            onClick={() => navigate("/admin_profile")}
                            /> 
             </div>
         </nav>

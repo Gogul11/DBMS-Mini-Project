@@ -30,7 +30,7 @@ export default function Order(){
                     <input type="text" placeholder="Search by name or category" className="sb"/>
                     <button className="button" onClick={() => navigate("/home")}>HOME</button>
                     <button className="button" onClick={() => navigate(-1)}>BACK</button>
-                    <img src={user} alt="User Profile" className="svg" />
+                    <img src={user} alt="User Profile" className="svg" onClick={() => navigate("/admin_profile")}/>
                 </div>
             </nav>
             <p className={styles.catList}>Orders</p>

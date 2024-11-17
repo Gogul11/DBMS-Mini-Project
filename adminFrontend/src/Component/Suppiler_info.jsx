@@ -28,8 +28,10 @@ export default function Supplier(){
                 <p className="title">Spare Hub-Admin</p>
                 <div>
                     <input type="text" placeholder="Search by name or category" className="sb"/>
+                    <button className="button" onClick={() => navigate("/add-supplier")}>Add Supplier</button>
                     <button className="button" onClick={() => navigate("/home")}>HOME</button>
                     <button className="button" onClick={() => navigate(-1)}>BACK</button>
+
                     <img src={user} alt="Supplier Profile" className="svg" onClick={() => navigate("/admin_profile")}/> 
                 </div>
             </nav>

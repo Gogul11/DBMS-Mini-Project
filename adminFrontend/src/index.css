@@ -41,3 +41,8 @@ body{
     width: 50px;
     cursor: pointer;
 }
+
+.err{
+    color : red;
+    font-size: 1.2 rem;
+}

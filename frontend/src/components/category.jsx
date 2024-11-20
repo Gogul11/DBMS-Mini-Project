@@ -2,6 +2,9 @@ import { useState } from "react"
 import styles from "./list.module.css"
 import { user } from "../img"
 import { useNavigate } from "react-router-dom"
+import axios from 'axios'
+import {PacmanLoader} from "react-spinners"
+
 
 const Card = () => {
 
@@ -18,7 +21,7 @@ const Card = () => {
             </div>
             <button 
                 className="button"
-                onClick={() => navigate("/parts/info")}
+                onClick={() => navigate("/user/parts/info")}
             >More Info</button>
     </div>
     )
@@ -47,8 +50,21 @@ const Categories = () => {
 export default function Category(){
 
     const[log, setLog] = useState(true)
+    const[auth, setAuth] = useState(false)
     const navigate = useNavigate()
+
+    axios.get("http://localhost:2000/user/category")
+    .then((res) => {
+        if(res.data.success) {
+            setAuth(true)
+        }
+    })
+    .catch((err) => {
+        setAuth(false)
+        console.log(err)
+    })
     return(
+        <>{auth ? 
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
@@ -56,7 +72,7 @@ export default function Category(){
                     <input type="text" placeholder="Search by name or category" className="sb"/>
                     <button 
                         className="button"
-                        onClick={() => navigate("/")}
+                        onClick={() => navigate("/user")}
                     >HOME</button>
                     <button 
                         className="button"
@@ -68,11 +84,11 @@ export default function Category(){
                                 src={user} 
                                 alt="User Profile" 
                                 className="svg"
-                                onClick={() => navigate("/profile")}
+                                onClick={() => navigate("/user/profile")}
                             /> :
                             <button 
                                 className="button"
-                                onClick={() => navigate("/login")}
+                                onClick={() => navigate("/user/login")}
                             >Login</button>
                     }
                 </div>
@@ -89,5 +105,10 @@ export default function Category(){
 
             </div>
         </div>
+        :
+        <div className="loading">
+            <PacmanLoader color="#FC7311" size={50}/>
+        </div>
+        }</>
     )
 }

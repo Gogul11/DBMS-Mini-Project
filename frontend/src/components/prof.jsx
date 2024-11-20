@@ -1,7 +1,10 @@
-import React from "react";
+import {useState} from "react";
 import styles from "./prof.module.css"
 import { star } from "../img";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+import {PacmanLoader} from "react-spinners"
+
 
 const Orders = () => {
     const navigate =useNavigate();
@@ -16,7 +19,7 @@ const Orders = () => {
                 <p>Date</p>
                 <p>Status</p>
                 <p>Quantity</p>
-                <button onClick={() => navigate("/parts/info")} 
+                <button onClick={() => navigate("/user/parts/info")} 
                     className="button"
                 >More Info</button>
             </div>
@@ -39,7 +42,7 @@ const Reviews = () => {
                     <img src={star} alt="Ratings" className={styles.star} />
                     <img src={star} alt="Ratings" className={styles.star} />
                 </div>
-                <button onClick={() => navigate("/parts/info")}
+                <button onClick={() => navigate("/user/parts/info")}
                     className="button">More Info</button>
             </div>
             <div>
@@ -56,14 +59,29 @@ export default function Profile(){
 
     const navigate = useNavigate()
 
+    const[auth, setAuth] = useState(false)
+    const[id, setID] = useState(0);
+    axios.get(`http://localhost:2000/user/profile/${id}`)
+    .then((res) => {
+        if(res.data.success){
+            setAuth(true)
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+
     return(
+        <>
+        {auth ? 
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
                     <button 
                         className="button"
-                        onClick={() => navigate("/")}
+                        onClick={() => navigate("/user")}
                     >Home</button>
 
                     <button 
@@ -73,8 +91,8 @@ export default function Profile(){
 
                     <button 
                         className="button"
-                        onClick={() => navigate("/")}
-                    >Log out</button>
+                        onClick={() => navigate("/user")}
+                        >Log out</button>
                 </div>
             </nav>
             <div className={styles.info}>
@@ -116,5 +134,10 @@ export default function Profile(){
 
             </div>
         </div>
+        :
+        <div className="loading">
+            <PacmanLoader color="#FC7311" size={50}/>
+        </div>
+        }</>
     )
 }

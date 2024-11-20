@@ -2,14 +2,30 @@ import React, { useState } from "react";
 import styles from "./default.module.css"
 import { img, img1, img2, img3, user } from "../img";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
+import {PacmanLoader} from "react-spinners"
 
 export default function Default(){
 
     const[log, setLog] = useState(false)
+    const[auth, setAuth] = useState(false)
 
     const navigate = useNavigate();
 
+    axios.get("http://localhost:2000/user")
+    .then((res) => {
+        if(res.data.success) {
+            setAuth(true)
+        }
+    })
+    .catch((err) => {
+        setAuth(false)
+        console.log(err)
+    })
+
     return(
+        <>
+        {auth ? 
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
@@ -21,12 +37,12 @@ export default function Default(){
                                     src={user} 
                                     alt="User Profile" 
                                     className="svg" 
-                                    onClick={() => navigate("/profile")}
+                                    onClick={() => navigate("/user/profile")}
                                     />
                         ):(
                             <button 
                                 className="button"
-                                onClick={() => navigate("/login")}
+                                onClick={() => navigate("/user/login")}
                             >Login</button>
                         )
                     }
@@ -40,7 +56,7 @@ export default function Default(){
             <div className={styles.but}>
                 <button 
                     className="button"
-                    onClick={() => navigate("/parts")}
+                    onClick={() => navigate("/user/parts")}
                 >View Parts</button>
             </div>
             
@@ -59,5 +75,11 @@ export default function Default(){
                 </div>
             </div>
         </div>
+        :
+        <div className="loading">
+            <PacmanLoader color="#FC7311" size={50}/>
+        </div>
+        }
+        </>
     )
 }

@@ -41,3 +41,13 @@ body{
     width: 50px;
     cursor: pointer;
 }
+.loading{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.err{
+    color: red;
+    font-size: 1.2rem;
+}

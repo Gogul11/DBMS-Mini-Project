@@ -21,14 +21,14 @@ return (
                     <input type="text" placeholder="Search by name or category" className="sb"/>
                             <button 
                                 className="button"
-                                onClick={() => navigate("/home")}
+                                onClick={() => navigate("/supplier/home")}
                             >Home</button>
                             <button 
                                 className="button"
                                 onClick={() => navigate(-1)}
                             >Back</button>
                             <img src={user}
-                                onClick={() => navigate("/supplier-profile")}
+                                onClick={() => navigate("/supplier/profile")}
                                 alt="User Profile" className="svg" /> 
                 </div>
             </nav>

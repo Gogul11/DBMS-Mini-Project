@@ -91,3 +91,21 @@
     gap: 30px;
     margin: 50px 0px 20px 200px;
 }
+
+.confirmOrder{
+    height: 50px;
+    width: 150px;
+    background-color: #003459;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+}
+
+.confirmOrder:hover{
+    background-color: #000;
+    cursor: pointer;
+}
+
+.confirm{
+    margin-left: 650px;
+}

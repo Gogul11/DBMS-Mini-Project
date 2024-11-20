@@ -8,12 +8,11 @@
 .productCard {
     background-color: #0a3b5a;
     color: #ffffff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 10px;
-    margin-bottom: 20px;
-    width: 900px;
-    height: 250px;
-    padding: 20px;
+    margin: 50px;
+    width: 800px;
+    height: 230px;
     font-family: 'Arial', sans-serif;
     overflow: auto;
 
@@ -21,13 +20,14 @@
 
 .productCardHeader {
     display: flex;
-    justify-content: space-between;
+    gap: 150px;
     font-weight: bold;
 }
 
 .productCardContent {
     display: flex;
-    justify-content: space-between;
+    width: 350px;
+    gap: 150px;
     margin-top: 10px;
 }
 
@@ -46,5 +46,5 @@
     gap: 50px;
 }
 .productList{
-    margin-left: 200px;
+    margin-left: 300px;
 }

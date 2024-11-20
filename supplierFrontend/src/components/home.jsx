@@ -17,10 +17,10 @@ export default function Home(){
                 <div>
                             <img 
                                 src={user} 
-                                onClick={() => navigate("/supplier-profile")} alt="User Profile" className="svg" /> 
+                                onClick={() => navigate("/supplier/profile")} alt="User Profile" className="svg" /> 
                             <button
                                 className="button"
-                                onClick={() => navigate("/")}
+                                onClick={() => navigate("/supplier")}
                             >Log out</button>
                 </div>
             </nav>
@@ -34,17 +34,17 @@ export default function Home(){
             <div className={styles.butDiv}>
                 <button 
                     className={styles.button}
-                    onClick={() => {navigate("/products")}}
+                    onClick={() => {navigate("/supplier/products")}}
                 >
                     Supplied Products</button>
                 <button 
                     className={styles.button}
-                    onClick={() => navigate("/add-product")}
+                    onClick={() => navigate("/supplier/add-product")}
                 >
                     Add products</button>
                 <button 
                     className={styles.button}
-                    onClick={() => navigate("/orders")}
+                    onClick={() => navigate("/supplier/orders")}
                 >
                     Orders Taken</button>
             </div>

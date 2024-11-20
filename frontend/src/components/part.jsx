@@ -1,8 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import styles from "./part.module.css"
 import { star, user } from "../img"
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom"
+import axios from "axios"
+import {PacmanLoader} from "react-spinners"
+
 
 
 const Review = () => {
@@ -44,23 +47,63 @@ export default function Part(){
 
     const navigate = useNavigate()
 
+    const[auth, setAuth] = useState(false)
+    const[part, setPart] = useState(null)
+    const[supp_name, setSupp_name] = useState(null)
+
+    const { id } = useParams()
+
+    axios.get(`http://localhost:2000/user/parts/info/${id}`)
+    .then((res) => {
+        if(res.data.success){
+            setAuth(true)
+            setPart(res.data.part[0])
+            setSupp_name(res.data.supp)
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+
+    
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:2000/user/parts/info/${id}`)
+        .then((res) => {
+            if(res.data.success){
+                setAuth(true)
+                setPart(res.data.part[0])
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    },[id, auth])
+    
+
     return(
+        <>
+        {auth ? 
         <div className={styles.main}>
             <nav className={styles.nav}>
                 <p className="title">Spare Hub</p>
                 <div>
-                    <input type="text" placeholder="Search by name or category" className="sb"/>
+                    <input 
+                        type="text" 
+                        placeholder="Search by name or category" 
+                        className="sb"/>
                     {
                         log ? (
                                 <img src={user} 
                                     alt="User Profile" 
                                     className="svg"
-                                    onClick={() => navigate("/profile")}
+                                    onClick={() => navigate("/user/profile")}
                                     /> 
                         ):(
                             <button 
                                 className="button"
-                                onClick={() => navigate("/login")}
+                                onClick={() => navigate("/user/login")}
                             >Login</button>
                         )
                     }
@@ -75,35 +118,24 @@ export default function Part(){
                     <img src="https://placehold.jp/300x300.png" alt="" />
                 </div>
                 <div>
-                    <p>Name</p>
-                    <p>Catogery Name</p>
+                    <p>{part.part_name}</p>
+                    <p>{part.category_name}</p>
                     <div>
-                        <p>{500 * quan}</p>
+                        <p>{part.price * quan}</p>
                         {quan >+ 1 &&
                             <button className = {styles.quanBut} onClick={() => setQuan(quan - 1)}>-</button>
                         }
                         <p>{quan}</p>
                         <button className={styles.quanBut} onClick={() => setQuan(quan + 1)}>+</button>
                     </div>
-                    <p>Supplier Name</p>
+                    <p>{supp_name}</p>
                     <button className="button">Add To Cart</button>
                 </div>
             </div>
             <div className={styles.desc}>
                 <p className={styles.Title}>Description : </p>
                 <p className={styles.description}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente alias maxime voluptate labore officiis natus exercitationem. Laboriosam necessitatibus sapiente iure optio ratione quos obcaecati, unde ipsum, quas cum, perferendis voluptatum!
+                        {part.description}
                 </p>
             </div>
                 <p className={styles.Title}>Reviews</p>
@@ -118,5 +150,10 @@ export default function Part(){
 
             </div>
         </div>
+        :
+        <div className="loading">
+            <PacmanLoader color="#FC7311" size={50}/>
+        </div>
+        }</>
     )
 }

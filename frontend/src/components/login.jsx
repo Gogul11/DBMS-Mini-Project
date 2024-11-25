@@ -30,6 +30,7 @@ export default function Login(){
         await axios.post("http://localhost:2000/user/login", data)
         .then((res) => {
             if(res.data.success === 1){
+                localStorage.setItem('token', res.data.token)
                 navigate('/user')
             }
             else if(res.data.success === 2){

@@ -41,6 +41,7 @@ export default function Login(){
             await axios.post("http://localhost:2000/supplier", data)
             .then((res) => {
                 if(res.data.success === 1){
+                    localStorage.setItem('supToken', res.data.token)
                     navigate("/supplier/home")
                 }
                 else if(res.data.success === 3){

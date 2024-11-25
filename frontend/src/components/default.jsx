@@ -4,23 +4,26 @@ import { img, img1, img2, img3, user } from "../img";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import {PacmanLoader} from "react-spinners"
+import { useEffect } from "react";
 
 export default function Default(){
 
     const[log, setLog] = useState(false)
     const[auth, setAuth] = useState(false)
-
     const navigate = useNavigate();
-
-    axios.get("http://localhost:2000/user")
-    .then((res) => {
-        if(res.data.success) {
-            setAuth(true)
-        }
-    })
-    .catch((err) => {
-        setAuth(false)
-        console.log(err)
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setLog(token); 
+        axios.get("http://localhost:2000/user")
+        .then((res) => {
+            if(res.data.success) {
+                setAuth(true)
+            }
+        })
+        .catch((err) => {
+            setAuth(false)
+            console.log(err)
+        })
     })
 
     return(

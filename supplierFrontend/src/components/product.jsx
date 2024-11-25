@@ -10,20 +10,25 @@ import {PacmanLoader} from "react-spinners"
 const SupplierPage = () => {
 
     const[auth, setAuth] = useState(false)
-    const[products, setProducts] = useState(null)
+    const[products, setProducts] = useState([])
     const[message, setMessage] = useState(null)
 
     const navigate = useNavigate()
 
     useEffect(() => {
 
-        axios.get("http://localhost:2000/supplier/products")
+        axios.get("http://localhost:2000/supplier/products", {
+            headers : {
+                Authorization : `Bearer ${localStorage.getItem('supToken')}`
+            }
+        })
         .then((res) => {
-            if(res.data.success == 1){
+            if(res.data.success === 1){
                 setAuth(true)
                 setProducts(res.data.suppliedParts)
             }
             else if(res.data.success === 2){
+                setAuth(true)
                 setMessage(res.data.message)
             }
         })
@@ -59,7 +64,9 @@ return (
         className="button"
         onClick={() => navigate("/supplier/add-product")}
         >Add Product</button>
-
+    {message ?  (
+        <span>{message}</span>
+    ):
     <div className={styles.productList}>
         {products.map((product, index) => (
         <div className={styles.productCard} key={index}>
@@ -81,6 +88,7 @@ return (
         </div>
         ))}
     </div>
+    }
     </div>
     :
     <div className="loading">

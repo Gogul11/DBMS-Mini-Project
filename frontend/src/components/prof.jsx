@@ -4,9 +4,10 @@ import { star } from "../img";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import {PacmanLoader} from "react-spinners"
+import { useEffect } from "react";
 
 
-const Orders = () => {
+const Orders = ({name, amount, status, created_at, part_id}) => {
     const navigate =useNavigate();
     return(
         <div className={styles.container}>
@@ -14,12 +15,11 @@ const Orders = () => {
                 <img src="https://placehold.jp/250x250.png" alt="Ordered Part Image" />
             </div>
             <div>
-                <p>Ordered Part Name</p>
-                <p>Amount</p>
-                <p>Date</p>
-                <p>Status</p>
-                <p>Quantity</p>
-                <button onClick={() => navigate("/user/parts/info")} 
+                <p>{name}</p>
+                <p>{amount}</p>
+                <p>{status}</p>
+                <p>{new Date(created_at).toLocaleString()}</p>
+                <button onClick={() => navigate(`/user/parts/info/${part_id}`)} 
                     className="button"
                 >More Info</button>
             </div>
@@ -27,48 +27,37 @@ const Orders = () => {
     )
 }
 
-const Reviews = () => {
 
-    const navigate = useNavigate()
-    return(
-        <div className={styles.reviewBox}>
-            <div className={styles.head}>
-                <p>Part Name</p>
-                <p>Date</p>
-                <div>
-                    <img src={star} alt="Ratings" className={styles.star} />
-                    <img src={star} alt="Ratings" className={styles.star} />
-                    <img src={star} alt="Ratings" className={styles.star} />
-                    <img src={star} alt="Ratings" className={styles.star} />
-                    <img src={star} alt="Ratings" className={styles.star} />
-                </div>
-                <button onClick={() => navigate("/user/parts/info")}
-                    className="button">More Info</button>
-            </div>
-            <div>
-                <p className={styles.sub}>comment : </p>
-                
-                <p className={styles.comments}> 
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus enim optio, sint corporis quaerat doloribus repudiandae. Nihil esse iure corrupti dolor? Veritatis quibusdam consectetur, reprehenderit ut maiores fuga laudantium recusandae.
-                </p>
-            </div>
-        </div>
-    )
-}
 export default function Profile(){
 
     const navigate = useNavigate()
 
     const[auth, setAuth] = useState(false)
     const[id, setID] = useState(0);
-    axios.get(`http://localhost:2000/user/profile/${id}`)
-    .then((res) => {
-        if(res.data.success){
-            setAuth(true)
-        }
-    })
-    .catch((err) => {
-        console.log(err)
+
+    const[user, setUser] = useState(null)
+    const[count, setCount] = useState(0);
+    const[orderInfo, setOrderInfo] = useState([])
+
+    useEffect(() => {
+
+        axios.get(`http://localhost:2000/user/profile/`, {
+            headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+        }})
+        .then((res) => {
+            if(res.data.success){
+                setAuth(true)
+                setUser(res.data.user)
+                setCount(res.data.orders)
+                setOrderInfo(res.data.orderDetails)
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+
+        
     })
 
 
@@ -91,7 +80,10 @@ export default function Profile(){
 
                     <button 
                         className="button"
-                        onClick={() => navigate("/user")}
+                        onClick={() => {
+                            localStorage.removeItem('token')
+                            navigate("/user")
+                        }}
                         >Log out</button>
                 </div>
             </nav>
@@ -102,37 +94,41 @@ export default function Profile(){
                             <tr>
                                 <td>Name</td>
                                 <td>:</td>
-                                <td>Name</td>
+                                <td>{user.username}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>
                                 <td>:</td>
-                                <td>Email</td>
+                                <td>{user.email}</td>
                             </tr>
                             <tr>
                                 <td>Phone Number</td>
                                 <td>:</td>
-                                <td>0000000000</td>
+                                <td>{user.phone_number}</td>
                             </tr>
                             <tr>
                                 <td>No of Orders</td>
                                 <td>:</td>
-                                <td>1000</td>
+                                <td>{count}</td>
                             </tr>
                         </tbody>
                     </table>
             </div>
+
             <div className={styles.orders}>
                 <p className={styles.divi}>My Orders</p>
-                <Orders/>
-                <button className="button">View More</button>
+                {orderInfo.map((item) => (
+                    <Orders 
+                        key={item.order_id}
+                        name={item.name} 
+                        amount={item.amount} 
+                        status={item.status} 
+                        created_at={item.created_at}
+                        part_id={item.part_id}
+                        />
+                ))} 
             </div>
-            <div className={styles.reviews}>
-                <p className={styles.divi}>My Reviews</p>
-                <Reviews/>
-                <button className="button">View More</button>
 
-            </div>
         </div>
         :
         <div className="loading">

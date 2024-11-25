@@ -1,5 +1,6 @@
 const express = require('express')
 const pool = require('../../database/db')
+const auth = require('../user/middleware')
 
 const addpart = express.Router()
 
@@ -17,14 +18,14 @@ const findRecentlyAdded = 'select part_id from parts where name ilike $1'
 const findCategoryId = 'select category_id from category where name ilike $1 '
 
 
-addpart.post("/", async(req, res) => {
+addpart.post("/", auth, async(req, res) => {
     try {
         const {category, partname, desc, price} = req.body;
         const id = await (await pool.query(findCategoryId, [category])).rows[0].category_id;
         const add = await pool.query(addPartQuery, [partname, desc, price, id])
         if(add.command === 'INSERT'){
             const partid = (await pool.query(findRecentlyAdded, [partname])).rows[0].part_id;
-            await pool.query(insertIntoSupplied, [partid, 1])
+            await pool.query(insertIntoSupplied, [partid, req.user_id])
             return res.status(200).json({success : 1,message : `Succesfully added the part ${partname}`})
         }
         return res.status(200).json({success : 2, message : "Some thing wentwrong"})

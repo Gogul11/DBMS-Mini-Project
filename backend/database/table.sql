@@ -66,7 +66,6 @@ create table orders(
     foreign key(user_id) references users(user_id),
     foreign key(part_id) references parts(part_id)
 );
-
 create table review(
     review_id serial not null,
     user_id int,
@@ -78,3 +77,26 @@ create table review(
     foreign key(user_id) references users(user_id),
     foreign key(part_id) references parts(part_id)
 );
+
+create table admin(
+    admin_id serial not null,
+    admin_name varchar(100),
+    email varchar(50) not null unique,
+    phone_number varchar(20) not null unique,
+    password varchar(70) not null unique,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp,
+    primary key(admin_id)
+)
+
+-- INSERT INTO category (name, description) VALUES
+-- ('Engine Parts', 'Components related to the engine system, including pistons, crankshafts, and oil filters'),
+-- ('Electrical Parts', 'Parts related to the electrical system such as batteries, alternators, and spark plugs'),
+-- ('Suspension and Steering', 'Parts that help with the vehicle suspension and steering control like shock absorbers and tie rods'),
+-- ('Brake System Parts', 'Components involved in braking like brake pads, discs, and calipers'),
+-- ('Transmission Parts', 'Parts related to the vehicle transmission system including gearboxes and clutches'),
+-- ('Body and Frame Components', 'Parts that make up the body and structure of the vehicle such as bumpers and doors'),
+-- ('Cooling and Heating', 'Components that regulate the engine temperature and air conditioning like radiators and compressors'),
+-- ('Fuel System Parts', 'Parts that supply fuel to the engine such as fuel pumps, injectors, and tanks'),
+-- ('Lighting and Accessories', 'Parts related to the vehicle lighting system like headlights, taillights, and fog lights'),
+-- ('Wheels and Tires', 'Parts related to the vehicle wheels including tires, rims, and wheel bearings');

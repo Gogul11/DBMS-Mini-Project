@@ -61,7 +61,7 @@
 }
 
 .reviewPart{
-    height: 350px;
+    height: 250px;
     width: 900px;
     background-color: #003459;
     padding: 20px;
@@ -108,4 +108,20 @@
 
 .confirm{
     margin-left: 650px;
+}
+
+.textarea{
+    height: 80px;
+    width: 350px;
+    padding: 10px;
+}
+.label{
+    font-size: 1.2rem;
+    margin: 5px 0px 15px 0px;
+}
+input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin-left: 5px;
+    text-align: center;
 }

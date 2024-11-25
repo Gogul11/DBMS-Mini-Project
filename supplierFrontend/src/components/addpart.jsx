@@ -39,11 +39,15 @@ export default function Addpart(){
     })
 
     const onAddPart = async(data) => {
-        console.log(data)
-        await axios.post("http://localhost:2000/supplier/add-product", data)
+        await axios.post("http://localhost:2000/supplier/add-product", data, {
+            headers : {
+                Authorization : `Bearer ${localStorage.getItem('supToken')}`
+            }
+    })
         .then((res) => {
             if(res.data.success === 1){
                 setSuccessMessage(res.data.message)
+                reset()
             }
             if(res.data.success === 2){
                 setErrorMessage(res.data.message)
@@ -59,7 +63,7 @@ export default function Addpart(){
         }, 6000);
     }
 
-    const{register, handleSubmit, formState:{errors}} = useForm({
+    const{register, handleSubmit, formState:{errors}, reset} = useForm({
         resolver : zodResolver(addPartSchmea)
     })
 

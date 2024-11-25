@@ -14,29 +14,29 @@ const Admin_home = () => {
                 
                         <img 
                             src={user} alt="User Profile" className="svg" 
-                            onClick={() => navigate("/admin_profile")}
-                           /> 
+                            onClick={() => navigate("/admin/admin_profile")}
+                        /> 
             </div>
         </nav>
         <div className={styles.grid}>
             <div className={styles.grid1}> 
                 <div 
                     className={styles.card}
-                    onClick={() => navigate("/supplier")}
+                    onClick={() => navigate("/admin/supplier")}
                 >Supplier Details</div>
                 <div 
                     className={styles.card}
-                    onClick={() => navigate("/user")}
+                    onClick={() => navigate("/admin/user")}
                 >User Details</div>
             </div>
             <div className={styles.grid2}> 
                 <div 
                     className={styles.card}
-                    onClick={() => navigate("/order")}
+                    onClick={() => navigate("/admin/order")}
                 >Order Details</div>
                 <div 
                     className={styles.card}
-                    onClick={() => navigate("/parts")}
+                    onClick={() => navigate("/admin/parts")}
                 >Part Info</div>
             </div>
         </div>

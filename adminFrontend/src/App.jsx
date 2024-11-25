@@ -7,25 +7,20 @@ import User from "./Component/user_info"
 import Supplier from "./Component/Suppiler_info"
 import Order from "./Component/order_info"
 import Part from "./Component/Part_info"
-import UserProfile from "./Component/User_profile"
-import SupplierProfile from "./Component/supplier_profile"
-import OrderProfile from "./Component/order_profile"
+
+
 function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Admin_login/>}/>
-          <Route path="/home" element={<Admin_home/>}/>
-          <Route path="/add-supplier" element={<Admin_supplier/>}/>
-          <Route path="/admin_profile" element={<AdminProfile/>}/>
-          <Route path="/login" element={<Admin_login/>}/>
-          <Route path="/supplier" element={<Supplier/>}/>
-          <Route path="/user" element={<User/>}/>
-          <Route path="/order" element={<Order/>}/>
-          <Route path="/parts" element={<Part/>}/>
-          <Route path="/supplier/profile" element={<SupplierProfile/>}/>
-          <Route path="/user/profile" element={<UserProfile/>}/>
-          <Route path="/order/profile" element={<OrderProfile/>}/>
+          <Route path="/admin" element={<Admin_login/>}/>
+          <Route path="/admin/home" element={<Admin_home/>}/>
+          <Route path="/admin/add-supplier" element={<Admin_supplier/>}/>
+          <Route path="/admin/admin_profile" element={<AdminProfile/>}/>
+          <Route path="/admin/supplier" element={<Supplier/>}/>
+          <Route path="/admin/user" element={<User/>}/>
+          <Route path="/admin/order" element={<Order/>}/>
+          <Route path="/admin/parts" element={<Part/>}/>
         </Routes>
       </BrowserRouter>
     )

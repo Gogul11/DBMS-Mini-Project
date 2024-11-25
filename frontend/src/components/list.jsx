@@ -36,6 +36,9 @@ export default function List(){
     const[val, setVal] = useState('')
 
     useEffect(() => {
+        
+        const token = localStorage.getItem('token');
+        setLog(token); 
 
         axios.get("http://localhost:2000/user/parts")
         .then((res) => {
@@ -99,14 +102,12 @@ export default function List(){
                     >Back</button>
                 </div>
             </nav>
-            <button 
-                className="button"
-                onClick={() => navigate("/user/category")}
-                >Categories</button>
             <div className={styles.cards}>
                 {
                     list.map((item) => (
-                        <Card id={item.part_id} name={item.part_name} category={item.category_name} price={item.price}/>
+                        <Card 
+                            id={item.part_id} 
+                            name={item.part_name} category={item.category_name} price={item.price}/>
                     ))
                 }
             </div>

@@ -3,16 +3,20 @@ import styles from './profile.module.css'
 import axios from "axios"
 import {PacmanLoader} from "react-spinners"
 import { useEffect, useState } from 'react'
-import { set } from 'zod'
 
 export default function(){
 
     const navigate = useNavigate()
     const [auth, setAuth] = useState(false)
     const[profile, setProfile] = useState(null)
+    
 
     useEffect(() => {
-        axios.get("http://localhost:2000/supplier/profile")
+        axios.get("http://localhost:2000/supplier/profile", {
+            headers : {
+                Authorization : `Bearer ${localStorage.getItem('supToken')}`
+            }
+        })
         .then((res) => {
             if(res.data.success){
                 setAuth(true)
@@ -48,7 +52,7 @@ export default function(){
                 <p>Email : {profile.email}</p>
                 <p>Phone Number : {profile.phone_number}</p>
                 <p>Address : <br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {profile.address}</p>
-                <p>Total no of Products Supplied :</p>
+                <p>Total no of Products Supplied : {profile.tot}</p>
                 <p>Ratings : </p>
                 <p></p>
             </div>

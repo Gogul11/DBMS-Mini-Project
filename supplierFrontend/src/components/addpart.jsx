@@ -35,15 +35,38 @@ export default function Addpart(){
         price: z.string()
                 .transform((val) => parseFloat(val)) // Convert string to number
                 .refine((val) => val > 0, { message: "Price must be greater than 0" }),
-        desc : z.string().min(20, "Description must be atleast 20 characters")
+        desc : z.string().min(20, "Description must be atleast 20 characters"),
+        image: z.any()
+                .refine((files) => files && files.length > 0 && files[0] instanceof File, {
+                    message: "Input must be an image file",
+                })
+                .refine((files) => files[0]?.type.startsWith("image/"), {
+                    message: "File must be an image (e.g., PNG, JPG)",
+                }),
     })
 
     const onAddPart = async(data) => {
-        await axios.post("http://localhost:2000/supplier/add-product", data, {
+
+        const formData = new FormData();
+
+        if (data.image && data.image[0]) {
+            formData.append("image", data.image[0]); // Appending the file
+        } else {
+            console.error("No image file detected.");
+        }
+
+        Object.keys(data).forEach((key) => {
+            if (key !== "image") {
+                formData.append(key, data[key]); // Append other fields
+            }
+        });
+
+        await axios.post("http://localhost:2000/supplier/add-product", formData, {
             headers : {
+                "Content-Type": "multipart/form-data",
                 Authorization : `Bearer ${localStorage.getItem('supToken')}`
             }
-    })
+        })
         .then((res) => {
             if(res.data.success === 1){
                 setSuccessMessage(res.data.message)
@@ -143,7 +166,11 @@ export default function Addpart(){
                         {errors.desc && (
                             <span className="err">{errors.desc.message}</span>
                         )}
-
+                        <label htmlFor="image" className={styles.lable}>Image :</label>
+                        <input type="file" id="image" {...register("image")} accept="image/*" />
+                        {errors.image && (
+                            <span className="err">{errors.image.message}</span>
+                        )}
                         <button 
                             className="button"
                             // onClick={() => navigate("/supplier/products")}

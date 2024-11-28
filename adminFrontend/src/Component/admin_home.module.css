@@ -4,7 +4,7 @@
     gap: 50px;
     margin: 50px;
 }
-  .nav{
+.nav{
     display: flex;
     justify-content: space-around;
     gap: 50px;
@@ -29,28 +29,20 @@ align-items: center;
 margin: 100px 0px 0px 400px;
 
 }
-.grid1 {
-    gap: 40px;
-    display: flex;
-    flex-direction: row;
-}
-
-.grid2{
-    gap: 40px;
-    display: flex;
-    flex-direction: row;
-}
 
 .card {
 background-color: #1c3454;
-padding: 60px;
 border-radius: 8px;
+height: 200px;
+width: 400px;
 text-align: center;
-font-size: 1.1rem;
+font-size: 2rem;
+line-height: 200px;
 cursor: pointer;
 transition: background-color 0.3s ease;
 }
 
 .card:hover {
 background-color: #294866;
+transform: scale(1.1);
 }

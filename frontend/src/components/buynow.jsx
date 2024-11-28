@@ -21,6 +21,7 @@ export default function BuyNow(){
 
     const { id } = useParams()
 
+    const[image, setImage] = useState(null)
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -33,6 +34,7 @@ export default function BuyNow(){
                 setAuth(res.data.success)
                 setPart(res.data.part[0])
                 setSupp_name(res.data.supp)
+                setImage(`data:image/png;base64,${res.data.image}`);
             }
         }).catch(err => {
             setAuth(false)
@@ -53,7 +55,11 @@ export default function BuyNow(){
         .then((res) => {
             if(res.data.success){
                 setMessage(res.data.message)
+                navigate('/user/profile')
             }
+        })
+        .catch(err => {
+                navigate('/user/login')
         })
     }
 
@@ -88,7 +94,7 @@ export default function BuyNow(){
             )}
             <div className={styles.partInfo}>
                 <div>
-                    <img src="https://placehold.jp/300x300.png" alt="" />
+                    <img src={image} alt="part_image" className="img"/>
                 </div>
                 <div>
                     <p>{part.part_name}</p>

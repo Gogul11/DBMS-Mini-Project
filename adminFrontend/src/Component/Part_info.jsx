@@ -56,8 +56,8 @@ export default function Part(){
                 {part.map((item) => (
                     <Card key={item.part_id}
                         partId={item.part_id}
-                        partName = {item.partName}
-                        price={item.amount}
+                        partName = {item.partname}
+                        price={item.price}
                         categoryName={item.name}
                         />
                 ))}

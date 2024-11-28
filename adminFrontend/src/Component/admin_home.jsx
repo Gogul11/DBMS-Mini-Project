@@ -19,29 +19,27 @@ const Admin_home = () => {
             </div>
         </nav>
         <div className={styles.grid}>
-            <div className={styles.grid1}> 
                 <div 
                     className={styles.card}
                     onClick={() => navigate("/admin/supplier")}
                 >Supplier Details</div>
+
                 <div 
                     className={styles.card}
                     onClick={() => navigate("/admin/user")}
                 >User Details</div>
-            </div>
-            <div className={styles.grid2}> 
+
                 <div 
                     className={styles.card}
                     onClick={() => navigate("/admin/order")}
                 >Order Details</div>
+
                 <div 
                     className={styles.card}
                     onClick={() => navigate("/admin/parts")}
                 >Part Info</div>
-            </div>
         </div>
     </div>
-  );
-};
+)};
 
 export default Admin_home;

@@ -1,7 +1,9 @@
 const express = require('express')
+const multer = require('multer')
 const pool = require('../../database/db')
 const auth = require('../user/middleware')
 
+const upload = multer()
 const addpart = express.Router()
 
 addpart.get("/", async(req, res) =>{
@@ -18,16 +20,27 @@ const findRecentlyAdded = 'select part_id from parts where name ilike $1'
 const findCategoryId = 'select category_id from category where name ilike $1 '
 
 
-addpart.post("/", auth, async(req, res) => {
+addpart.post("/", auth, upload.single("image"),async(req, res) => {
     try {
-        const {category, partname, desc, price} = req.body;
+        const {category, partname, desc, price} = req.body; 
         const id = await (await pool.query(findCategoryId, [category])).rows[0].category_id;
         const add = await pool.query(addPartQuery, [partname, desc, price, id])
+
         if(add.command === 'INSERT'){
+
             const partid = (await pool.query(findRecentlyAdded, [partname])).rows[0].part_id;
-            await pool.query(insertIntoSupplied, [partid, req.user_id])
+            // await pool.query(insertIntoSupplied, [partid, req.user_id])
+            await pool.query("CALL insert_into_supplied($1, $2)", [req.user_id, partid]);
+
+            if (req.file) {
+                const image = req.file.buffer;
+                await pool.query("INSERT INTO images (part_id, image_data) VALUES ($1, $2)", [partid,image]);
+            }
+            
+
             return res.status(200).json({success : 1,message : `Succesfully added the part ${partname}`})
         }
+
         return res.status(200).json({success : 2, message : "Some thing wentwrong"})
     } catch (error) {
         res.status(404).json({success : false, message : error})

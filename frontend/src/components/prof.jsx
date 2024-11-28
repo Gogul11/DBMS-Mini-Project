@@ -12,9 +12,6 @@ const Orders = ({name, amount, status, created_at, part_id}) => {
     return(
         <div className={styles.container}>
             <div>
-                <img src="https://placehold.jp/250x250.png" alt="Ordered Part Image" />
-            </div>
-            <div>
                 <p>{name}</p>
                 <p>{amount}</p>
                 <p>{status}</p>

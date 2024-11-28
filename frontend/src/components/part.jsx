@@ -55,6 +55,8 @@ export default function Part(){
     const[show, setShow] = useState(false)
     const[message, setMessage] = useState(null)
 
+    const[image, setImage] = useState(null)
+
     useEffect(() => {
 
         const token = localStorage.getItem('token');
@@ -67,6 +69,7 @@ export default function Part(){
                 setPart(res.data.part[0])
                 setSupp_name(res.data.supp)
                 setReviews(res.data.review)
+                setImage(`data:image/png;base64,${res.data.image}`);
             }
         })
         .catch((err) => {
@@ -166,7 +169,7 @@ export default function Part(){
             </nav>
             <div className={styles.partInfo}>
                 <div>
-                    <img src="https://placehold.jp/300x300.png" alt="" />
+                    <img src={image} alt="part-image" className="img"/>
                 </div>
                 <div>
                     <p>{part.part_name}</p>

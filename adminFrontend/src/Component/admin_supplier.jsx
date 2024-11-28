@@ -31,41 +31,67 @@ const Admin_supplier = () => {
             console.log(err.message)
         })
     }, [])
-    const onLogin = async(data) => {
-        console.log(data)
-        await axios.post('http://localhost:2000/admin/add-supplier', data)
-        .then((res) => {
-            if(res.data.success === 1){
-                setAdd(res.data.message)
-                setMailErr(null)
-                setPhoneErr(null)
-                setNameErr(null)
-                reset()
-            }
-            else if(res.data.success === 3){
-                setNameErr(res.data.message)
-                setMailErr(null)
-                setPhoneErr(null)
-            }
-            else if(res.data.success === 4){
-                setMailErr(res.data.message)
-                setNameErr(null)
-                setPhoneErr(null)
-            }
-            else if(res.data.success === 5){
-                setPhoneErr(res.data.message)
-                setMailErr(null)
-                setNameErr(null)
-            }
-        })
-        .catch(err => {
-            console.log(err.message)
-        })
 
-        setTimeout(() => {
-            setAdd('');
-    }, 6000);
-    }
+    // const onLogin = async(data) => {
+    //     console.log(data)
+    //     await axios.post('http://localhost:2000/admin/add-supplier', data)
+    //     .then((res) => {
+    //         if(res.data.success === 1){
+    //             setAdd(res.data.message)
+    //             setMailErr(null)
+    //             setPhoneErr(null)
+    //             setNameErr(null)
+    //             reset()
+    //         }
+    //         else if(res.data.success === 3){
+    //             setNameErr(res.data.message)
+    //             setMailErr(null)
+    //             setPhoneErr(null)
+    //         }
+    //         else if(res.data.success === 4){
+    //             setMailErr(res.data.message)
+    //             setNameErr(null)
+    //             setPhoneErr(null)
+    //         }
+    //         else if(res.data.success === 5){
+    //             setPhoneErr(res.data.message)
+    //             setMailErr(null)
+    //             setNameErr(null)
+    //         }
+    //     })
+    //     .catch(err => {
+    //         console.log(err.message)
+    //     })
+
+    //     setTimeout(() => {
+    //         setAdd('');
+    // }, 6000);
+    // }
+
+    const onLogin = async (data) => {
+        try {
+            const response = await axios.post("http://localhost:2000/admin/add-supplier", data);
+
+            if (response.data.success) {
+                setAdd(response.data.message);
+                setNameErr(null);
+                setMailErr(null);
+                setPhoneErr(null);
+                reset();
+            }
+        } catch (err) {
+            if (err.response?.status === 409) {
+                const message = err.response.data.message;
+                if (message.includes('name')) setNameErr(message);
+                else if (message.includes('email')) setMailErr(message);
+                else if (message.includes('phone number')) setPhoneErr(message);
+            } else {
+                console.error("Unexpected error:", err);
+            }
+        }
+
+        setTimeout(() => setAdd(''), 6000);
+    };
 
     const loginSchema=z.object({
         suppliername : z.string().min(4,"Suppliername must contain atleast 4 letters"),

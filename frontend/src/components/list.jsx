@@ -6,22 +6,24 @@ import axios from 'axios'
 import {PacmanLoader} from "react-spinners"
 
 
-const Card = ({id,name, category, price}) => {
+const Card = ({id,name, category, price, img}) => {
     const navigate = useNavigate()
     return(
         <div className={styles.card}>
             <div>
-                <img className={styles.img} src="https://placehold.jp/150x150.png" alt="Profile Picture" />
+                <img src={img} className={styles.img} alt="" />
+            </div>
+            <div>
                 <div className={styles.info}>
                     <p>{name}</p>
                     <p>{category}</p>
                     <p>{price}</p>
                 </div>
-            </div>
             <button 
                 className="button"
                 onClick={() => navigate(`/user/parts/info/${id}`)}
             >More Info</button>
+            </div>
     </div>
     )
 }
@@ -107,7 +109,11 @@ export default function List(){
                     list.map((item) => (
                         <Card 
                             id={item.part_id} 
-                            name={item.part_name} category={item.category_name} price={item.price}/>
+                            name={item.part_name} 
+                            category={item.category_name} 
+                            price={item.price}
+                            img={item.image_data}
+                            />
                     ))
                 }
             </div>

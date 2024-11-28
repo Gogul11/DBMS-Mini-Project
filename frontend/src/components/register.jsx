@@ -46,25 +46,42 @@ export default function Register(){
     })
 
     const onRegister = async(data) => {
-        console.log(data)
-        await axios.post("http://localhost:2000/user/register", data)
-        .then((res) => {
-            if(res.data.success === 1){
-                navigate('/user/login')
+        // console.log(data)
+        // await axios.post("http://localhost:2000/user/register", data)
+        // .then((res) => {
+        //     if(res.data.success === 1){
+        //         navigate('/user/login')
+        //     }
+        //     else if(res.data.success === 2){
+        //         setNameErr(res.data.message)
+        //     }
+        //     else if(res.data.success === 3){
+        //         setMailErr(res.data.message)
+        //     }
+        //     else if(res.data.success === 4){
+        //         setNumErr(res.data.message)
+        //     }
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
+
+        try {
+            const response = await axios.post("http://localhost:2000/user/register", data);
+    
+            if (response.data.success) {
+                navigate('/user/login');
             }
-            else if(res.data.success === 2){
-                setNameErr(res.data.message)
+        } catch (err) {
+            if (err.response?.status === 400) {
+                const message = err.response.data.message;
+                if (message.includes('username')) setNameErr(message);
+                else if (message.includes('email')) setMailErr(message);
+                else if (message.includes('phone number')) setNumErr(message);
+            } else {
+                console.error("Unexpected error:", err);
             }
-            else if(res.data.success === 3){
-                setMailErr(res.data.message)
-            }
-            else if(res.data.success === 4){
-                setNumErr(res.data.message)
-            }
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        }
     }
     const{register, handleSubmit, formState:{errors}} = useForm({
         resolver : zodResolver(registerSchema)

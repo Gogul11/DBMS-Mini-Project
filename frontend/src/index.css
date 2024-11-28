@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
@@ -8,6 +10,7 @@
 body{
     background-color: #00171F;
     color: #fff;
+    font-family: "Montserrat", sans-serif;
 }
 .button{
     height: 50px;
@@ -50,4 +53,8 @@ body{
 .err{
     color: red;
     font-size: 1.2rem;
+}
+.img{
+    height: 350px;
+    width: 350px;
 }

@@ -35,6 +35,11 @@
     font-size: 1.2rem;
 }
 
+.card:hover {
+    background-color: #294866;
+    transform: scale(1.1);
+}
+
 .cards{
     display: flex;
     flex-wrap: wrap;
